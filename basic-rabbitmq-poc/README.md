@@ -16,3 +16,8 @@ docker-compose up
 ```shell
 python3 sender.py
 ```
+
+* Run consumer
+```shell
+python3 consumer.py
+```
