@@ -1,6 +1,8 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import pika
 import json
+import sys
 
 rabbit_host = 'localhost'
 rabbit_port = 5672
@@ -15,10 +17,10 @@ def run():
     channel.queue_declare(queue='basic-events')
 
     data = {}
-    data['name'] = 'Gabriel Passos'
-    json_data = json.dumps(data)
-
-    publishMessage(channel, json_data)
+    for param in sys.argv:
+        data['data'] = param
+        json_data = json.dumps(data)
+        publishMessage(channel, json_data)
 
     connection.close()
     print('[x] -> Send body:', json_data)
